@@ -1,6 +1,7 @@
 package org.jeecg.modules.shop.entity;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -17,7 +18,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Description: 店铺
- * @Author: jeecg-boot
+ * @Author: aaron
  * @Date:   2019-12-16
  * @Version: V1.0
  */
@@ -78,4 +79,24 @@ public class Shop {
 	@Excel(name = "删除标识0-正常,1-已删除", width = 15)
     @ApiModelProperty(value = "删除标识0-正常,1-已删除")
 	private Integer delFlag;
+	/**微信号*/
+	@Excel(name = "微信号", width = 15)
+	@ApiModelProperty(value = "微信号")
+	private String wechatId;
+	/**邮编*/
+	@Excel(name = "邮编", width = 15)
+	@ApiModelProperty(value = "邮编")
+	private String postcode;
+	/**营业额*/
+	@Excel(name = "营业额", width = 10)
+	@ApiModelProperty(value = "营业额")
+	private BigDecimal turnover;
+	/**已结营业额*/
+	@Excel(name = "已结营业额", width = 10)
+	@ApiModelProperty(value = "已结营业额")
+	private BigDecimal turnover_closed;
+	/**未结营业额*/
+	@Excel(name = "未结营业额", width = 10)
+	@ApiModelProperty(value = "未结营业额")
+	private BigDecimal turnover_outstanding;
 }

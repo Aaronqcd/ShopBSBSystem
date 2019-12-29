@@ -65,6 +65,13 @@ public interface ISysUserService extends IService<SysUser> {
 	 * @param roles
 	 */
 	public void addUserWithRole(SysUser user,String roles);
+
+	/**
+	 * 添加用户和用户角色关系，如果用户名重复返回false
+	 * @param user
+	 * @param roles
+	 */
+	public boolean addUserAndRole(SysUser user,String roles);
 	
 	
 	/**

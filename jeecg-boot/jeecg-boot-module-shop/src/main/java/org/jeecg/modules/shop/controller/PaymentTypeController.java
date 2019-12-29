@@ -37,14 +37,14 @@ import io.swagger.annotations.ApiOperation;
 
  /**
  * @Description: 支付类型
- * @Author: jeecg-boot
+ * @Author: aaron
  * @Date:   2019-12-16
  * @Version: V1.0
  */
 @Slf4j
 @Api(tags="支付类型")
 @RestController
-@RequestMapping("/shop/paymentType")
+@RequestMapping("/paymentType")
 public class PaymentTypeController extends JeecgController<PaymentType, IPaymentTypeService> {
 	@Autowired
 	private IPaymentTypeService paymentTypeService;

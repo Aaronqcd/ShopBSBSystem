@@ -1,9 +1,9 @@
 server:
-  port: 8080
+  port: 9000
   tomcat:
     max-swallow-size: -1
   servlet:
-    context-path: /jeecg-boot
+    context-path: /shop
   compression:
     enabled: true
     min-response-size: 1024
@@ -96,9 +96,9 @@ spring:
         connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
       datasource:
         master:
-          url: jdbc:mysql://127.0.0.1:3306/jeecg-boot?characterEncoding=UTF-8&useUnicode=true&useSSL=false
-          username: root
-          password: root
+          url: jdbc:mysql://47.108.71.51:3306/bsb_shop?characterEncoding=UTF-8&useUnicode=true&useSSL=false
+          username: user
+          password: E5NR&$vE
           driver-class-name: com.mysql.jdbc.Driver
           # 多数据源配置
           #multi-datasource1:
@@ -109,7 +109,7 @@ spring:
   #redis 配置
   redis:
     database: 0
-    host: 127.0.0.1
+    host: 47.108.71.51
     lettuce:
       pool:
         max-active: 8   #最大连接数据库连接数,设 0 为没有限制
@@ -117,7 +117,7 @@ spring:
         max-wait: -1ms  #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制。
         min-idle: 0     #最小等待连接中的数量,设 0 为没有限制
       shutdown-timeout: 100ms
-    password: ''
+    password: 'abc123456'
     port: 6379
 #mybatis plus 设置
 mybatis-plus:
@@ -134,9 +134,9 @@ mybatis-plus:
 jeecg :
   path :
     #文件上传根目录 设置
-    upload: /opt/jeecg-boot/upload
+    upload: /opt/bsb-shop/upload
     #webapp文件路径
-    webapp: /opt/jeecg-boot/webapp
+    webapp: /opt/bsb-shop/webapp
   #短信秘钥
   sms:
      accessKeyId: LTAIpW4gUG7xYDNI

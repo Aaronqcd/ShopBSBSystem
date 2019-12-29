@@ -12,12 +12,13 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.jeecg.modules.system.entity.SysUser;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
  * @Description: 营业员
- * @Author: jeecg-boot
+ * @Author: aaron
  * @Date:   2019-12-16
  * @Version: V1.0
  */
@@ -68,4 +69,21 @@ public class Assistant {
 	@Excel(name = "删除标识0-正常,1-已删除", width = 15)
     @ApiModelProperty(value = "删除标识0-正常,1-已删除")
 	private Integer delFlag;
+	/**身份证号*/
+	@Excel(name = "身份证号", width = 15)
+	@ApiModelProperty(value = "身份证号")
+	private String idNumber;
+	/**住址*/
+	@Excel(name = "住址", width = 20)
+	@ApiModelProperty(value = "住址")
+	private String address;
+	/**
+	 * 用户id
+	 */
+	private String userId;
+	/**
+	 * 店铺id
+	 */
+	@ApiModelProperty(value = "店铺id")
+	private String shopId;
 }

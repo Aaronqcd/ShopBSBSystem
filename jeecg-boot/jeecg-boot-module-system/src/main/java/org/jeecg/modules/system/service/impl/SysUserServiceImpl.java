@@ -132,6 +132,24 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 		}
 	}
 
+	@Transactional
+	public boolean addUserAndRole(SysUser user, String roles) {
+		try {
+			this.save(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		if(oConvertUtils.isNotEmpty(roles)) {
+			String[] arr = roles.split(",");
+			for (String roleId : arr) {
+				SysUserRole userRole = new SysUserRole(user.getId(), roleId);
+				sysUserRoleMapper.insert(userRole);
+			}
+		}
+		return true;
+	}
+
 	@Override
 	@CacheEvict(value= {CacheConstant.SYS_USERS_CACHE}, allEntries=true)
 	@Transactional

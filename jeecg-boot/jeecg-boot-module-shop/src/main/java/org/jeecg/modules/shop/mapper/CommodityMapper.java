@@ -1,0 +1,17 @@
+package org.jeecg.modules.shop.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+import org.jeecg.modules.shop.entity.Commodity;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+/**
+ * @Description: 商品表
+ * @Author: jeecg-boot
+ * @Date:   2019-12-29
+ * @Version: V1.0
+ */
+public interface CommodityMapper extends BaseMapper<Commodity> {
+
+}

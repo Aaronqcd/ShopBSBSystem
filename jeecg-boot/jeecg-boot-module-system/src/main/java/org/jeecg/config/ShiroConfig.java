@@ -97,6 +97,17 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/**/*.png", "anon");
 		filterChainDefinitionMap.put("/**/*.ico", "anon");
 
+		//接口地址先开启访问
+		filterChainDefinitionMap.put("/assistant/**", "anon");//供应商
+		filterChainDefinitionMap.put("/store/**", "anon");//店铺
+		filterChainDefinitionMap.put("/paymentType/**", "anon");//支付类型
+		filterChainDefinitionMap.put("/settlementAccount/**", "anon");//结算账户
+		filterChainDefinitionMap.put("/sales/**", "anon");//销售单
+		filterChainDefinitionMap.put("/category/**", "anon");//货品类别
+		filterChainDefinitionMap.put("/commodity/**", "anon");//商品表
+		filterChainDefinitionMap.put("/salesCommodity/**", "anon");//销售单商品关联表
+		filterChainDefinitionMap.put("/uom/**", "anon");//商品单位
+
 		// update-begin--Author:sunjianlei Date:20190813 for：排除字体格式的后缀
 		filterChainDefinitionMap.put("/**/*.ttf", "anon");
 		filterChainDefinitionMap.put("/**/*.woff", "anon");

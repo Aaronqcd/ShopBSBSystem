@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.aspect.annotation.AutoLog;
+import org.jeecg.common.util.PasswordUtil;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.shop.entity.Assistant;
+import org.jeecg.modules.shop.model.AssistantModel;
 import org.jeecg.modules.shop.service.IAssistantService;
 import java.util.Date;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -20,6 +22,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lombok.extern.slf4j.Slf4j;
 import org.jeecg.common.system.base.controller.JeecgController;
+import org.jeecg.modules.system.entity.SysUser;
+import org.jeecg.modules.system.service.ISysUserService;
 import org.jeecgframework.poi.excel.ExcelImportUtil;
 import org.jeecgframework.poi.excel.def.NormalExcelConstants;
 import org.jeecgframework.poi.excel.entity.ExportParams;
@@ -37,17 +41,19 @@ import io.swagger.annotations.ApiOperation;
 
  /**
  * @Description: 营业员
- * @Author: jeecg-boot
+ * @Author: aaron
  * @Date:   2019-12-16
  * @Version: V1.0
  */
 @Slf4j
 @Api(tags="营业员")
 @RestController
-@RequestMapping("/shop/assistant")
+@RequestMapping("/assistant")
 public class AssistantController extends JeecgController<Assistant, IAssistantService> {
 	@Autowired
 	private IAssistantService assistantService;
+	 @Autowired
+	 private ISysUserService sysUserService;
 	
 	/**
 	 * 分页列表查询
@@ -74,13 +80,27 @@ public class AssistantController extends JeecgController<Assistant, IAssistantSe
 	/**
 	 * 添加
 	 *
-	 * @param assistant
+	 * @param assistantModel
 	 * @return
 	 */
 	@AutoLog(value = "营业员-添加")
 	@ApiOperation(value="营业员-添加", notes="营业员-添加")
 	@PostMapping(value = "/add")
-	public Result<?> add(@RequestBody Assistant assistant) {
+	public Result<?> add(@RequestBody AssistantModel assistantModel) {
+		Assistant assistant = assistantModel.getAssistant();
+		SysUser user = assistantModel.getUser();
+		user.setCreateTime(new Date());//设置创建时间
+		String salt = oConvertUtils.randomGen(8);
+		user.setSalt(salt);
+		String passwordEncode = PasswordUtil.encrypt(user.getUsername(), "123456", salt);
+		user.setPassword(passwordEncode);
+		user.setStatus(1);
+		user.setDelFlag("0");
+		boolean flag = sysUserService.addUserAndRole(user, "1210906011755913218");//营业员角色id
+		if(!flag) {
+			return Result.error("登录账号已存在！");
+		}
+		assistant.setUserId(user.getId());
 		assistantService.save(assistant);
 		return Result.ok("添加成功！");
 	}

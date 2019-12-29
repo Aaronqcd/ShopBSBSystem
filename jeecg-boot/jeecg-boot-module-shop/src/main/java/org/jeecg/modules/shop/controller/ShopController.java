@@ -37,14 +37,14 @@ import io.swagger.annotations.ApiOperation;
 
  /**
  * @Description: 店铺
- * @Author: jeecg-boot
+ * @Author: aaron
  * @Date:   2019-12-16
  * @Version: V1.0
  */
 @Slf4j
 @Api(tags="店铺")
 @RestController
-@RequestMapping("/shop/shop")
+@RequestMapping("/store")
 public class ShopController extends JeecgController<Shop, IShopService> {
 	@Autowired
 	private IShopService shopService;
