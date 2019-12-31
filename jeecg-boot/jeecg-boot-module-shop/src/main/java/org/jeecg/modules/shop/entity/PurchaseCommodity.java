@@ -16,17 +16,17 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单商品关联表
+ * @Description: 进货单商品关联表
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2019-12-30
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_purchase_commodity")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
+@ApiModel(value="tb_purchase_commodity对象", description="进货单商品关联表")
+public class PurchaseCommodity {
     
 	/**数量*/
 	@Excel(name = "数量", width = 15)
@@ -54,17 +54,17 @@ public class SalesCommodity {
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
+	/**进货单id*/
+	@Excel(name = "进货单id", width = 15)
+    @ApiModelProperty(value = "进货单id")
+	private String purchaseId;
 	/**备注*/
 	@Excel(name = "备注", width = 15)
     @ApiModelProperty(value = "备注")
 	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价",required=true)
+	/**采购总价*/
+	@Excel(name = "采购总价", width = 15)
+    @ApiModelProperty(value = "采购总价",required=true)
 	private java.math.BigDecimal totalPrice;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)

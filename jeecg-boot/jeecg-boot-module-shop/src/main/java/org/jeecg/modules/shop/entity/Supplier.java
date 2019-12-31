@@ -16,26 +16,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单商品关联表
+ * @Description: 供应商
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2019-12-31
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_supplier")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
+@ApiModel(value="tb_supplier对象", description="供应商")
+public class Supplier {
     
-	/**数量*/
-	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量",required=true)
-	private java.math.BigDecimal amount;
-	/**商品表id*/
-	@Excel(name = "商品表id", width = 15)
-    @ApiModelProperty(value = "商品表id",required=true)
-	private String commodityId;
+	/**银行账号*/
+	@Excel(name = "银行账号", width = 15)
+    @ApiModelProperty(value = "银行账号",required=true)
+	private String bankAccount;
+	/**联系人*/
+	@Excel(name = "联系人", width = 15)
+    @ApiModelProperty(value = "联系人",required=true)
+	private String contact;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")
@@ -50,22 +50,22 @@ public class SalesCommodity {
 	@Excel(name = "删除标识", width = 15)
     @ApiModelProperty(value = "删除标识")
 	private String delFlag;
+	/**应付款*/
+	@Excel(name = "应付款", width = 15)
+    @ApiModelProperty(value = "应付款",required=true)
+	private java.math.BigDecimal due;
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
-	/**备注*/
-	@Excel(name = "备注", width = 15)
-    @ApiModelProperty(value = "备注")
-	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价",required=true)
-	private java.math.BigDecimal totalPrice;
+	/**供应商名称*/
+	@Excel(name = "供应商名称", width = 15)
+    @ApiModelProperty(value = "供应商名称",required=true)
+	private String name;
+	/**联系电话*/
+	@Excel(name = "联系电话", width = 15)
+    @ApiModelProperty(value = "联系电话",required=true)
+	private String phone;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
     @ApiModelProperty(value = "修改人")

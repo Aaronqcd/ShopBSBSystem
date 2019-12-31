@@ -16,26 +16,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单商品关联表
+ * @Description: 付款单
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2019-12-31
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_payment")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
-    
-	/**数量*/
-	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量",required=true)
-	private java.math.BigDecimal amount;
-	/**商品表id*/
-	@Excel(name = "商品表id", width = 15)
-    @ApiModelProperty(value = "商品表id",required=true)
-	private String commodityId;
+@ApiModel(value="tb_payment对象", description="付款单")
+public class Payment {
+	/**单据日期*/
+	@Excel(name = "单据日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "单据日期",required=true)
+	private Date certificateDate;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")
@@ -54,18 +51,22 @@ public class SalesCommodity {
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
-	/**备注*/
-	@Excel(name = "备注", width = 15)
-    @ApiModelProperty(value = "备注")
-	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价",required=true)
-	private java.math.BigDecimal totalPrice;
+	/**金额*/
+	@Excel(name = "金额", width = 15)
+    @ApiModelProperty(value = "金额",required=true)
+	private java.math.BigDecimal money;
+	/**付款单编号*/
+	@Excel(name = "付款单编号", width = 15)
+    @ApiModelProperty(value = "付款单编号",required=true)
+	private String paymentNo;
+	/**进货单id*/
+	@Excel(name = "进货单id", width = 15)
+    @ApiModelProperty(value = "进货单id",required=true)
+	private String purchaseId;
+	/**供应商id*/
+	@Excel(name = "供应商id", width = 15)
+    @ApiModelProperty(value = "供应商id",required=true)
+	private String supplierId;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
     @ApiModelProperty(value = "修改人")

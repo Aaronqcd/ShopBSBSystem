@@ -16,22 +16,21 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单
+ * @Description: 进货单
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2019-12-30
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales")
+@TableName("tb_purchase")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales对象", description="销售单")
-public class Sales {
-    
-	/**营业员id*/
-	@Excel(name = "营业员id", width = 15)
-    @ApiModelProperty(value = "营业员id",required=true)
-	private String assistantId;
+@ApiModel(value="tb_purchase对象", description="进货单")
+public class Purchase {
+	/**进货员*/
+	@Excel(name = "进货员", width = 15)
+    @ApiModelProperty(value = "进货员",required=true)
+	private String buyer;
 	/**单据日期*/
 	@Excel(name = "单据日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
@@ -52,10 +51,10 @@ public class Sales {
 	@Excel(name = "客户名称", width = 15)
     @ApiModelProperty(value = "客户名称",required=true)
 	private String customerName;
-	/**删除标识0-正常,1-已删除*/
-	@Excel(name = "删除标识0-正常,1-已删除", width = 15)
-    @ApiModelProperty(value = "删除标识0-正常,1-已删除")
-	private Integer delFlag;
+	/**删除标识*/
+	@Excel(name = "删除标识", width = 15)
+    @ApiModelProperty(value = "删除标识")
+	private String delFlag;
 	/**折后金额*/
 	@Excel(name = "折后金额", width = 15)
     @ApiModelProperty(value = "折后金额",required=true)
@@ -64,45 +63,25 @@ public class Sales {
 	@Excel(name = "折扣率", width = 15)
     @ApiModelProperty(value = "折扣率",required=true)
 	private java.math.BigDecimal discountRate;
-	/**找零*/
-	@Excel(name = "找零", width = 15)
-    @ApiModelProperty(value = "找零",required=true)
-	private java.math.BigDecimal dispenser;
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
+	/**本次付款*/
+	@Excel(name = "本次付款", width = 15)
+    @ApiModelProperty(value = "本次付款",required=true)
+	private java.math.BigDecimal payment;
 	/**支付类型id*/
 	@Excel(name = "支付类型id", width = 15)
     @ApiModelProperty(value = "支付类型id",required=true)
 	private String paymentTypeId;
-	/**实收*/
-	@Excel(name = "实收", width = 15)
-    @ApiModelProperty(value = "实收",required=true)
-	private java.math.BigDecimal receipts;
-	/**本单应收*/
-	@Excel(name = "本单应收", width = 15)
-    @ApiModelProperty(value = "本单应收",required=true)
-	private java.math.BigDecimal receivable;
-	/**销售单编号*/
-	@Excel(name = "销售单编号", width = 15)
-    @ApiModelProperty(value = "销售单编号",required=true)
-	private String salesNo;
-	/**结算账户id*/
-	@Excel(name = "结算账户id", width = 15)
-    @ApiModelProperty(value = "结算账户id")
-	private String settlementAccountId;
-	/**店铺id*/
-	@Excel(name = "店铺id", width = 15)
-    @ApiModelProperty(value = "店铺id",required=true)
-	private String shopId;
-	/**销售状态，1表示出货，2表示退货*/
-	@Excel(name = "销售状态", width = 15)
-    @ApiModelProperty(value = "销售状态",required=true)
-	private String saleState;
-	/**状态，1表示未保存，2表示已保存*/
-	@Excel(name = "状态", width = 15)
-	@ApiModelProperty(value = "状态")
+	/**进货单编号*/
+	@Excel(name = "进货单编号", width = 15)
+    @ApiModelProperty(value = "进货单编号",required=true)
+	private String purchaseNo;
+	/**采购状态*/
+	@Excel(name = "采购状态", width = 15)
+    @ApiModelProperty(value = "采购状态")
 	private String state;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
