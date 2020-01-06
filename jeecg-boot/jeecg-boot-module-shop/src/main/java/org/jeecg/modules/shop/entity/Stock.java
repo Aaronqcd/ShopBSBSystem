@@ -15,23 +15,26 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
+import javax.persistence.Transient;
+
 /**
- * @Description: 销售单商品关联表
+ * @Description: 货品库存
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2020-01-01
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_stock")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
-    
-	/**数量*/
-	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量")
-	private java.math.BigDecimal amount;
+@ApiModel(value="tb_stock对象", description="货品库存")
+public class Stock {
+	/**单据日期*/
+	@Excel(name = "单据日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
+	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "单据日期")
+	private Date certificateDate;
 	/**商品表id*/
 	@Excel(name = "商品表id", width = 15)
     @ApiModelProperty(value = "商品表id")
@@ -54,18 +57,18 @@ public class SalesCommodity {
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
-	/**备注*/
-	@Excel(name = "备注", width = 15)
-    @ApiModelProperty(value = "备注")
-	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价")
-	private java.math.BigDecimal totalPrice;
+	/**状态*/
+	@Excel(name = "状态", width = 15)
+    @ApiModelProperty(value = "状态")
+	private String state;
+	/**库存数*/
+	@Excel(name = "库存数", width = 15)
+    @ApiModelProperty(value = "库存数")
+	private java.math.BigDecimal stockAmount;
+	/**货品库存单编号*/
+	@Excel(name = "货品库存单编号", width = 15)
+    @ApiModelProperty(value = "货品库存单编号")
+	private String stockNo;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
     @ApiModelProperty(value = "修改人")
@@ -76,4 +79,7 @@ public class SalesCommodity {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "修改时间")
 	private Date updateTime;
+
+	@TableField(exist = false)
+	private Commodity commodity;
 }

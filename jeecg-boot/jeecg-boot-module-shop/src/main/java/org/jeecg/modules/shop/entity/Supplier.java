@@ -30,11 +30,11 @@ public class Supplier {
     
 	/**银行账号*/
 	@Excel(name = "银行账号", width = 15)
-    @ApiModelProperty(value = "银行账号",required=true)
+    @ApiModelProperty(value = "银行账号")
 	private String bankAccount;
 	/**联系人*/
 	@Excel(name = "联系人", width = 15)
-    @ApiModelProperty(value = "联系人",required=true)
+    @ApiModelProperty(value = "联系人")
 	private String contact;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
@@ -52,7 +52,7 @@ public class Supplier {
 	private String delFlag;
 	/**应付款*/
 	@Excel(name = "应付款", width = 15)
-    @ApiModelProperty(value = "应付款",required=true)
+    @ApiModelProperty(value = "应付款")
 	private java.math.BigDecimal due;
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
@@ -60,11 +60,11 @@ public class Supplier {
 	private String id;
 	/**供应商名称*/
 	@Excel(name = "供应商名称", width = 15)
-    @ApiModelProperty(value = "供应商名称",required=true)
+    @ApiModelProperty(value = "供应商名称")
 	private String name;
 	/**联系电话*/
 	@Excel(name = "联系电话", width = 15)
-    @ApiModelProperty(value = "联系电话",required=true)
+    @ApiModelProperty(value = "联系电话")
 	private String phone;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)

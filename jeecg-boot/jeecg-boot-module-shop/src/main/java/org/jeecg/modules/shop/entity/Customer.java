@@ -16,26 +16,26 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单商品关联表
+ * @Description: 客户管理
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2020-01-01
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_customer")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
+@ApiModel(value="tb_customer对象", description="客户管理")
+public class Customer {
     
-	/**数量*/
-	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量")
-	private java.math.BigDecimal amount;
-	/**商品表id*/
-	@Excel(name = "商品表id", width = 15)
-    @ApiModelProperty(value = "商品表id")
-	private String commodityId;
+	/**银行账号*/
+	@Excel(name = "银行账号", width = 15)
+    @ApiModelProperty(value = "银行账号")
+	private String bankAccount;
+	/**联系人*/
+	@Excel(name = "联系人", width = 15)
+    @ApiModelProperty(value = "联系人")
+	private String contact;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")
@@ -54,18 +54,26 @@ public class SalesCommodity {
 	@TableId(type = IdType.ID_WORKER_STR)
     @ApiModelProperty(value = "主键")
 	private String id;
-	/**备注*/
-	@Excel(name = "备注", width = 15)
-    @ApiModelProperty(value = "备注")
-	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价")
-	private java.math.BigDecimal totalPrice;
+	/**客户名称*/
+	@Excel(name = "客户名称", width = 15)
+    @ApiModelProperty(value = "客户名称")
+	private String name;
+	/**支付类型id*/
+	@Excel(name = "支付类型id", width = 15)
+    @ApiModelProperty(value = "支付类型id")
+	private String paymentTypeId;
+	/**联系电话*/
+	@Excel(name = "联系电话", width = 15)
+    @ApiModelProperty(value = "联系电话")
+	private String phone;
+	/**应收款*/
+	@Excel(name = "应收款", width = 15)
+    @ApiModelProperty(value = "应收款")
+	private java.math.BigDecimal receivable;
+	/**状态，1表示启用，2表示停用*/
+	@Excel(name = "状态", width = 15)
+    @ApiModelProperty(value = "状态")
+	private String state;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
     @ApiModelProperty(value = "修改人")

@@ -31,7 +31,7 @@ public class Payment {
 	@Excel(name = "单据日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "单据日期",required=true)
+    @ApiModelProperty(value = "单据日期")
 	private Date certificateDate;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
@@ -53,19 +53,19 @@ public class Payment {
 	private String id;
 	/**金额*/
 	@Excel(name = "金额", width = 15)
-    @ApiModelProperty(value = "金额",required=true)
+    @ApiModelProperty(value = "金额")
 	private java.math.BigDecimal money;
 	/**付款单编号*/
 	@Excel(name = "付款单编号", width = 15)
-    @ApiModelProperty(value = "付款单编号",required=true)
+    @ApiModelProperty(value = "付款单编号")
 	private String paymentNo;
 	/**进货单id*/
 	@Excel(name = "进货单id", width = 15)
-    @ApiModelProperty(value = "进货单id",required=true)
+    @ApiModelProperty(value = "进货单id")
 	private String purchaseId;
 	/**供应商id*/
 	@Excel(name = "供应商id", width = 15)
-    @ApiModelProperty(value = "供应商id",required=true)
+    @ApiModelProperty(value = "供应商id")
 	private String supplierId;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)

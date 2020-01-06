@@ -30,13 +30,13 @@ public class Sales {
     
 	/**营业员id*/
 	@Excel(name = "营业员id", width = 15)
-    @ApiModelProperty(value = "营业员id",required=true)
+    @ApiModelProperty(value = "营业员id")
 	private String assistantId;
 	/**单据日期*/
 	@Excel(name = "单据日期", width = 20, format = "yyyy-MM-dd HH:mm:ss")
 	@JsonFormat(timezone = "GMT+8",pattern = "yyyy-MM-dd HH:mm:ss")
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
-    @ApiModelProperty(value = "单据日期",required=true)
+    @ApiModelProperty(value = "单据日期")
 	private Date certificateDate;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
@@ -50,7 +50,7 @@ public class Sales {
 	private Date createTime;
 	/**客户名称*/
 	@Excel(name = "客户名称", width = 15)
-    @ApiModelProperty(value = "客户名称",required=true)
+    @ApiModelProperty(value = "客户名称")
 	private String customerName;
 	/**删除标识0-正常,1-已删除*/
 	@Excel(name = "删除标识0-正常,1-已删除", width = 15)
@@ -58,15 +58,15 @@ public class Sales {
 	private Integer delFlag;
 	/**折后金额*/
 	@Excel(name = "折后金额", width = 15)
-    @ApiModelProperty(value = "折后金额",required=true)
+    @ApiModelProperty(value = "折后金额")
 	private java.math.BigDecimal discountMoney;
 	/**折扣率*/
 	@Excel(name = "折扣率", width = 15)
-    @ApiModelProperty(value = "折扣率",required=true)
+    @ApiModelProperty(value = "折扣率")
 	private java.math.BigDecimal discountRate;
 	/**找零*/
 	@Excel(name = "找零", width = 15)
-    @ApiModelProperty(value = "找零",required=true)
+    @ApiModelProperty(value = "找零")
 	private java.math.BigDecimal dispenser;
 	/**主键*/
 	@TableId(type = IdType.ID_WORKER_STR)
@@ -74,19 +74,19 @@ public class Sales {
 	private String id;
 	/**支付类型id*/
 	@Excel(name = "支付类型id", width = 15)
-    @ApiModelProperty(value = "支付类型id",required=true)
+    @ApiModelProperty(value = "支付类型id")
 	private String paymentTypeId;
 	/**实收*/
 	@Excel(name = "实收", width = 15)
-    @ApiModelProperty(value = "实收",required=true)
+    @ApiModelProperty(value = "实收")
 	private java.math.BigDecimal receipts;
 	/**本单应收*/
 	@Excel(name = "本单应收", width = 15)
-    @ApiModelProperty(value = "本单应收",required=true)
+    @ApiModelProperty(value = "本单应收")
 	private java.math.BigDecimal receivable;
 	/**销售单编号*/
 	@Excel(name = "销售单编号", width = 15)
-    @ApiModelProperty(value = "销售单编号",required=true)
+    @ApiModelProperty(value = "销售单编号")
 	private String salesNo;
 	/**结算账户id*/
 	@Excel(name = "结算账户id", width = 15)
@@ -94,11 +94,11 @@ public class Sales {
 	private String settlementAccountId;
 	/**店铺id*/
 	@Excel(name = "店铺id", width = 15)
-    @ApiModelProperty(value = "店铺id",required=true)
+    @ApiModelProperty(value = "店铺id")
 	private String shopId;
 	/**销售状态，1表示出货，2表示退货*/
 	@Excel(name = "销售状态", width = 15)
-    @ApiModelProperty(value = "销售状态",required=true)
+    @ApiModelProperty(value = "销售状态")
 	private String saleState;
 	/**状态，1表示未保存，2表示已保存*/
 	@Excel(name = "状态", width = 15)

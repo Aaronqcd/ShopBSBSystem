@@ -26,7 +26,7 @@ import org.jeecgframework.poi.excel.annotation.Excel;
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
 @ApiModel(value="tb_commodity对象", description="商品表")
-public class Commodity {
+public class Commodity implements Serializable {
     
 	/**商品类别表id*/
 	@Excel(name = "商品类别表id", width = 15)

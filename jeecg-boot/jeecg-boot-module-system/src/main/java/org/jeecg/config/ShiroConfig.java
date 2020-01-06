@@ -111,6 +111,10 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/purchaseCommodity/**", "anon");//进货单商品关联表
 		filterChainDefinitionMap.put("/payment/**", "anon");//付款单
 		filterChainDefinitionMap.put("/supplier/**", "anon");//供应商
+		filterChainDefinitionMap.put("/customer/**", "anon");//客户管理
+		filterChainDefinitionMap.put("/stock/**", "anon");//货品库存
+		filterChainDefinitionMap.put("/stockCheck/**", "anon");//库存盘点
+		filterChainDefinitionMap.put("/journalAccount/**", "anon");//资金流水
 
 		// update-begin--Author:sunjianlei Date:20190813 for：排除字体格式的后缀
 		filterChainDefinitionMap.put("/**/*.ttf", "anon");

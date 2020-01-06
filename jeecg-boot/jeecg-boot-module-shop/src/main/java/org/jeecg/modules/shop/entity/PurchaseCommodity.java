@@ -30,11 +30,11 @@ public class PurchaseCommodity {
     
 	/**数量*/
 	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量",required=true)
+    @ApiModelProperty(value = "数量")
 	private java.math.BigDecimal amount;
 	/**商品表id*/
 	@Excel(name = "商品表id", width = 15)
-    @ApiModelProperty(value = "商品表id",required=true)
+    @ApiModelProperty(value = "商品表id")
 	private String commodityId;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
@@ -64,7 +64,7 @@ public class PurchaseCommodity {
 	private String remark;
 	/**采购总价*/
 	@Excel(name = "采购总价", width = 15)
-    @ApiModelProperty(value = "采购总价",required=true)
+    @ApiModelProperty(value = "采购总价")
 	private java.math.BigDecimal totalPrice;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
