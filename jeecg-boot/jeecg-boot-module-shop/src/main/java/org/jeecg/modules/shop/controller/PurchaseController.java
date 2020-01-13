@@ -1,6 +1,8 @@
 package org.jeecg.modules.shop.controller;
 
 import java.math.BigDecimal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -14,10 +16,12 @@ import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.util.oConvertUtils;
 import org.jeecg.modules.shop.entity.Commodity;
+import org.jeecg.modules.shop.entity.PaymentType;
 import org.jeecg.modules.shop.entity.Purchase;
 import org.jeecg.modules.shop.entity.PurchaseCommodity;
 import org.jeecg.modules.shop.model.PurchaseModel;
 import org.jeecg.modules.shop.service.ICommodityService;
+import org.jeecg.modules.shop.service.IPaymentTypeService;
 import org.jeecg.modules.shop.service.IPurchaseCommodityService;
 import org.jeecg.modules.shop.service.IPurchaseService;
 import java.util.Date;
@@ -59,7 +63,9 @@ public class PurchaseController extends JeecgController<Purchase, IPurchaseServi
 	 private ICommodityService commodityService;
 	 @Autowired
 	 private IPurchaseCommodityService purchaseCommodityService;
-	
+	 @Autowired
+	 private IPaymentTypeService paymentTypeService;
+
 	/**
 	 * 分页列表查询
 	 *
@@ -79,6 +85,16 @@ public class PurchaseController extends JeecgController<Purchase, IPurchaseServi
 		QueryWrapper<Purchase> queryWrapper = QueryGenerator.initQueryWrapper(purchase, req.getParameterMap());
 		Page<Purchase> page = new Page<Purchase>(pageNo, pageSize);
 		IPage<Purchase> pageList = purchaseService.page(page, queryWrapper);
+		for (Purchase purchaseObj : pageList.getRecords()) {
+			//关联查询支付类型信息
+			PaymentType paymentType = paymentTypeService.getById(purchaseObj.getPaymentTypeId());
+			purchaseObj.setPaymentType(paymentType);
+			//关联查询销售单商品信息
+			QueryWrapper<PurchaseCommodity> purchaseQueryWrapper = new QueryWrapper();
+			purchaseQueryWrapper.eq("purchase_id", purchaseObj.getId());
+			List<PurchaseCommodity> purchaseCommodityList = purchaseCommodityService.getList(purchaseQueryWrapper);
+			purchaseObj.setPurchaseCommodityList(purchaseCommodityList);
+		}
 		return Result.ok(pageList);
 	}
 	
@@ -93,6 +109,15 @@ public class PurchaseController extends JeecgController<Purchase, IPurchaseServi
 	@PostMapping(value = "/add")
 	public Result<?> add(@RequestBody PurchaseModel purchaseModel) {
 		Purchase purchase = purchaseModel.getPurchase();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		try {
+			if(purchase.getCertificateDate() != null) {
+				String time = sdf.format(purchase.getCertificateDate());
+				purchase.setCertificateDate(sdf.parse(time));
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 		purchaseService.save(purchase);
 		List<PurchaseCommodity> commodityList = purchaseModel.getCommodityList();
 		//保存"进货单商品关联表

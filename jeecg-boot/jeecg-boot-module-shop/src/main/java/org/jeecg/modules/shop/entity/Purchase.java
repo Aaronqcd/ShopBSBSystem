@@ -2,6 +2,8 @@ package org.jeecg.modules.shop.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -93,4 +95,10 @@ public class Purchase {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "修改时间")
 	private Date updateTime;
+
+	@TableField(exist = false)
+	private List<PurchaseCommodity> purchaseCommodityList;
+
+	@TableField(exist = false)
+	private PaymentType paymentType;
 }

@@ -16,26 +16,42 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.jeecgframework.poi.excel.annotation.Excel;
 
 /**
- * @Description: 销售单商品关联表
+ * @Description: 系统参数
  * @Author: jeecg-boot
- * @Date:   2019-12-29
+ * @Date:   2020-01-11
  * @Version: V1.0
  */
 @Data
-@TableName("tb_sales_commodity")
+@TableName("tb_setting")
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="tb_sales_commodity对象", description="销售单商品关联表")
-public class SalesCommodity {
+@ApiModel(value="tb_setting对象", description="系统参数")
+public class Setting {
     
-	/**数量*/
-	@Excel(name = "数量", width = 15)
-    @ApiModelProperty(value = "数量")
-	private java.math.BigDecimal amount;
-	/**商品表id*/
-	@Excel(name = "商品表id", width = 15)
-    @ApiModelProperty(value = "商品表id")
-	private String commodityId;
+	/**主键*/
+	@TableId(type = IdType.ID_WORKER_STR)
+    @ApiModelProperty(value = "主键")
+	private String id;
+	/**店铺经营报告*/
+	@Excel(name = "店铺经营报告", width = 15)
+    @ApiModelProperty(value = "店铺经营报告")
+	private String operationReport;
+	/**单据应用*/
+	@Excel(name = "单据应用", width = 15)
+    @ApiModelProperty(value = "单据应用")
+	private String applicationDocuments;
+	/**小数位数设置*/
+	@Excel(name = "小数位数设置", width = 15)
+    @ApiModelProperty(value = "小数位数设置")
+	private String decimalSetting;
+	/**销售单价格控制*/
+	@Excel(name = "销售单价格控制", width = 15)
+    @ApiModelProperty(value = "销售单价格控制")
+	private String priceControl;
+	/**推送微信号*/
+	@Excel(name = "推送微信号", width = 15)
+    @ApiModelProperty(value = "推送微信号")
+	private String pushWechatId;
 	/**创建人*/
 	@Excel(name = "创建人", width = 15)
     @ApiModelProperty(value = "创建人")
@@ -46,26 +62,6 @@ public class SalesCommodity {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "创建时间")
 	private Date createTime;
-	/**删除标识*/
-	@Excel(name = "删除标识", width = 15)
-    @ApiModelProperty(value = "删除标识")
-	private String delFlag;
-	/**主键*/
-	@TableId(type = IdType.ID_WORKER_STR)
-    @ApiModelProperty(value = "主键")
-	private String id;
-	/**备注*/
-	@Excel(name = "备注", width = 15)
-    @ApiModelProperty(value = "备注")
-	private String remark;
-	/**销售单id*/
-	@Excel(name = "销售单id", width = 15)
-    @ApiModelProperty(value = "销售单id")
-	private String salesId;
-	/**总价*/
-	@Excel(name = "总价", width = 15)
-    @ApiModelProperty(value = "总价")
-	private java.math.BigDecimal totalPrice;
 	/**修改人*/
 	@Excel(name = "修改人", width = 15)
     @ApiModelProperty(value = "修改人")
@@ -76,7 +72,8 @@ public class SalesCommodity {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "修改时间")
 	private Date updateTime;
-
-	@TableField(exist = false)
-	private Commodity commodity;
+	/**删除标识*/
+	@Excel(name = "删除标识", width = 15)
+    @ApiModelProperty(value = "删除标识")
+	private String delFlag;
 }

@@ -115,6 +115,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/stock/**", "anon");//货品库存
 		filterChainDefinitionMap.put("/stockCheck/**", "anon");//库存盘点
 		filterChainDefinitionMap.put("/journalAccount/**", "anon");//资金流水
+		filterChainDefinitionMap.put("/tenant/**", "anon");//承租人
+		filterChainDefinitionMap.put("/tenantShop/**", "anon");//承租人店铺关联
+		filterChainDefinitionMap.put("/setting/**", "anon");//系统参数
 
 		// update-begin--Author:sunjianlei Date:20190813 for：排除字体格式的后缀
 		filterChainDefinitionMap.put("/**/*.ttf", "anon");

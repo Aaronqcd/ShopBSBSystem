@@ -2,6 +2,8 @@ package org.jeecg.modules.shop.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
+
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
@@ -114,4 +116,19 @@ public class Sales {
     @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     @ApiModelProperty(value = "修改时间")
 	private Date updateTime;
+
+	@TableField(exist = false)
+	private List<SalesCommodity> salesCommodityList;
+
+	@TableField(exist = false)
+	private PaymentType paymentType;
+
+	@TableField(exist = false)
+	private Shop shop;
+
+	@TableField(exist = false)
+	private Assistant assistant;
+
+	@TableField(exist = false)
+	private SettlementAccount settlementAccount;
 }

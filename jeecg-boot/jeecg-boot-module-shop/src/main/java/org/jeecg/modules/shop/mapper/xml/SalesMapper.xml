@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.jeecg.modules.shop.mapper.SalesMapper">
-
+    <!-- 销售统计 -->
+    <select id="saleStat" resultType="org.jeecg.modules.shop.model.SaleStatModel">
+        select c.`name` as name,c.price as price,sum(sc.amount) as amount,sum(sc.total_price) as totalPrice
+        from tb_sales_commodity sc join tb_commodity c on sc.commodity_id=c.id
+        group by c.`name`,c.price
+    </select>
 </mapper>

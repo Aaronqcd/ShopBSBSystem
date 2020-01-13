@@ -9,17 +9,19 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.segments.MergeSegments;
 import org.jeecg.common.api.vo.Result;
 import org.jeecg.common.system.query.QueryGenerator;
 import org.jeecg.common.aspect.annotation.AutoLog;
 import org.jeecg.common.util.oConvertUtils;
-import org.jeecg.modules.shop.entity.Commodity;
-import org.jeecg.modules.shop.entity.Sales;
-import org.jeecg.modules.shop.entity.SalesCommodity;
+import org.jeecg.modules.shop.entity.*;
+import org.jeecg.modules.shop.model.SaleStatModel;
+import org.jeecg.modules.shop.model.SalesDetailModel;
 import org.jeecg.modules.shop.model.SalesModel;
-import org.jeecg.modules.shop.service.ICommodityService;
-import org.jeecg.modules.shop.service.ISalesCommodityService;
-import org.jeecg.modules.shop.service.ISalesService;
+import org.jeecg.modules.shop.service.*;
+
 import java.util.Date;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -59,6 +61,14 @@ public class SalesController extends JeecgController<Sales, ISalesService> {
 	 private ICommodityService commodityService;
 	 @Autowired
 	 private ISalesCommodityService salesCommodityService;
+	 @Autowired
+	 private IPaymentTypeService paymentTypeService;
+	 @Autowired
+	 private IShopService shopService;
+	 @Autowired
+	 private IAssistantService assistantService;
+	 @Autowired
+	 private ISettlementAccountService settlementAccountService;
 	
 	/**
 	 * 分页列表查询
@@ -79,6 +89,25 @@ public class SalesController extends JeecgController<Sales, ISalesService> {
 		QueryWrapper<Sales> queryWrapper = QueryGenerator.initQueryWrapper(sales, req.getParameterMap());
 		Page<Sales> page = new Page<Sales>(pageNo, pageSize);
 		IPage<Sales> pageList = salesService.page(page, queryWrapper);
+		for (Sales salesObj : pageList.getRecords()) {
+		    //关联查询支付类型信息
+			PaymentType paymentType = paymentTypeService.getById(salesObj.getPaymentTypeId());
+			salesObj.setPaymentType(paymentType);
+            //关联查询店铺信息
+			Shop shop = shopService.getById(salesObj.getShopId());
+			salesObj.setShop(shop);
+            //关联查询营业员信息
+			Assistant assistant = assistantService.getById(salesObj.getAssistantId());
+			salesObj.setAssistant(assistant);
+            //关联查询结算账户信息
+			SettlementAccount settlementAccount = settlementAccountService.getById(salesObj.getSettlementAccountId());
+			salesObj.setSettlementAccount(settlementAccount);
+            //关联查询销售单商品信息
+			QueryWrapper<SalesCommodity> salesQueryWrapper = new QueryWrapper();
+			salesQueryWrapper.eq("sales_id", salesObj.getId());
+			List<SalesCommodity> salesCommodities = salesCommodityService.getList(salesQueryWrapper);
+			salesObj.setSalesCommodityList(salesCommodities);
+		}
 		return Result.ok(pageList);
 	}
 	
@@ -104,6 +133,19 @@ public class SalesController extends JeecgController<Sales, ISalesService> {
 		}
 		return Result.ok("添加成功！");
 	}
+
+	 /**
+	  * 销售统计
+	  * @param req
+	  * @return
+	  */
+	 @AutoLog(value = "销售单-销售统计")
+	 @ApiOperation(value="销售单-销售统计", notes="销售单-销售统计")
+	 @GetMapping(value = "/saleStat")
+	 public Result<?> saleStat(HttpServletRequest req) {
+		List<SaleStatModel> saleStatModels = salesService.saleStat();
+		 return Result.ok(saleStatModels);
+	 }
 
 	 /**
 	  * 生成10位纯数字的销售单编号
